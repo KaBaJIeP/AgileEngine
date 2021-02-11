@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using AE.ImageGallery.Supplier.Application;
 using AE.ImageGallery.Supplier.Application.Api;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -9,14 +10,14 @@ namespace AE.ImageGallery.Supplier.Runner
 {
     public class RunnerService: IHostedService
     {
-        private readonly IImageGalleryClient _client;
+        private readonly IImageGalleryService _service;
         private readonly ILogger<RunnerService> _logger;
 
         public RunnerService(
-            IImageGalleryClient client,
+            IImageGalleryService service,
             ILogger<RunnerService> logger)
         {
-            _client = client;
+            _service = service;
             _logger = logger;
         }
 
@@ -24,12 +25,23 @@ namespace AE.ImageGallery.Supplier.Runner
         {
             try
             {
-                var images = await _client.GetImages();
-                _logger.LogInformation($"{images.PageCount}");
+                var pageCount = 0;
+                var currentPage = 1;
+                do
+                {
+                    var imagesOnPage = await _service.GetImagesOnPage(currentPage);
+                    pageCount = imagesOnPage.PageCount;
+                    currentPage++;
+                } while (currentPage <= pageCount);
             }
-            catch (Exception e)
+            catch (AggregateException aex)
             {
+                var e = aex.Flatten();
                 _logger.LogError(e, e.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
             }
         }
 

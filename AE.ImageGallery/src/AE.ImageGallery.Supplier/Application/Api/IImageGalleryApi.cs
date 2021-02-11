@@ -12,8 +12,8 @@ namespace AE.ImageGallery.Supplier.Application.Api
         [Get("images")]
         Task<PicturePageResponseDto> GetImages([Header("Authorization")] string auth);
 
-        [Get("images/{page}")]
-        Task<PicturePageResponseDto> GetImages([Header("Authorization")] string auth, [Path] int page);
+        [Get("images")]
+        Task<PicturePageResponseDto> GetImages([Header("Authorization")] string auth, [Query] int page);
 
         [Get("images/{id}")]
         Task<PictureResponseDto> GetImage([Header("Authorization")] string auth, [Path] string id);

@@ -16,6 +16,7 @@ namespace AE.ImageGallery.Supplier.Runner
             var config = configuration.GetSection(AgileEngineConfig.SectionName).Get<AgileEngineConfig>();
             collection.AddRestEaseClient<IImageGalleryApi>(config.ApiUrl);
             collection.AddSingleton<IImageGalleryClient, ImageGalleryClient>();
+            collection.AddSingleton<IImageGalleryService, ImageGalleryService>();
             return collection;
         }
     }

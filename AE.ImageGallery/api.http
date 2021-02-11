@@ -18,6 +18,6 @@ Authorization: Bearer 6d68db739ebc36131154d51fb472ed4a25da195a
 content-type: application/json
 
 ###
-GET http://interview.agileengine.com/images/90322bc9cd20fd0f4ffa
+GET http://interview.agileengine.com/images/d8b093f6ad76844e959d
 Authorization: Bearer 6d68db739ebc36131154d51fb472ed4a25da195a
 content-type: application/json
