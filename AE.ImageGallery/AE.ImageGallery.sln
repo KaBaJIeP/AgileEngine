@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AE.ImageGallery.Supplier", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AE.ImageGallery.Supplier.Runner", "src\AE.ImageGallery.Supplier.Runner\AE.ImageGallery.Supplier.Runner.csproj", "{956CF0E0-3757-44BE-BC3E-085FFF3FAA4A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "write", "write", "{A1229A7B-6970-4307-BB5C-50196C648143}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AE.ImageGallery.Supplier.UnitTests", "tests\AE.ImageGallery.Supplier.UnitTests\AE.ImageGallery.Supplier.UnitTests.csproj", "{EC8658A1-0E43-4AE7-96F3-F225AFE24E35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +48,8 @@ Global
 		{37822736-F35D-4580-A9F0-3F3DCF8C27F0} = {56E61C46-ED0D-4464-A5C9-FB7A35D2EF97}
 		{9435F0F5-BAAF-4D4E-814B-3215C380B884} = {E3FD4C52-6C6B-45D0-B898-5CE06B28F4A3}
 		{956CF0E0-3757-44BE-BC3E-085FFF3FAA4A} = {E3FD4C52-6C6B-45D0-B898-5CE06B28F4A3}
+		{A1229A7B-6970-4307-BB5C-50196C648143} = {BACD4031-B15C-43CD-BBA7-D34E7BEBBF76}
+		{EC8658A1-0E43-4AE7-96F3-F225AFE24E35} = {A1229A7B-6970-4307-BB5C-50196C648143}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{61BF3AEB-D917-4020-95F9-C7A35A4ADF26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -74,5 +80,9 @@ Global
 		{956CF0E0-3757-44BE-BC3E-085FFF3FAA4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{956CF0E0-3757-44BE-BC3E-085FFF3FAA4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{956CF0E0-3757-44BE-BC3E-085FFF3FAA4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC8658A1-0E43-4AE7-96F3-F225AFE24E35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC8658A1-0E43-4AE7-96F3-F225AFE24E35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC8658A1-0E43-4AE7-96F3-F225AFE24E35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC8658A1-0E43-4AE7-96F3-F225AFE24E35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
