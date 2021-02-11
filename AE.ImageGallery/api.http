@@ -1,0 +1,23 @@
+###
+POST http://interview.agileengine.com/auth
+content-type: application/json
+
+{
+  "apiKey": "23567b218376f79d9415"
+}
+
+###
+GET http://interview.agileengine.com/images
+Authorization: Bearer 591b9ea4036139981f1dfe1fecfa33d136fa8992
+content-type: application/json
+
+
+###
+GET http://interview.agileengine.com/images?page=2
+Authorization: Bearer 591b9ea4036139981f1dfe1fecfa33d136fa8992
+content-type: application/json
+
+###
+GET http://interview.agileengine.com/images/eef92ba9b15984b107dd
+Authorization: Bearer 591b9ea4036139981f1dfe1fecfa33d136fa8992
+content-type: application/json

@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5CD755CE-C6AD-4719-BD0B-057C1B4876AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BACD4031-B15C-43CD-BBA7-D34E7BEBBF76}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{D8D5826C-593A-4682-B680-3C7BD01353C4}"
+ProjectSection(SolutionItems) = preProject
+	todo.md = todo.md
+	api.http = api.http
+	.gitignore = .gitignore
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "read", "read", "{56E61C46-ED0D-4464-A5C9-FB7A35D2EF97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "write", "write", "{E3FD4C52-6C6B-45D0-B898-5CE06B28F4A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AE.ImageGallery.Domain", "src\AE.ImageGallery.Domain\AE.ImageGallery.Domain.csproj", "{61BF3AEB-D917-4020-95F9-C7A35A4ADF26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AE.ImageGallery.Application", "src\AE.ImageGallery.Application\AE.ImageGallery.Application.csproj", "{624A6F2C-158E-419A-9DC0-4672BE5FC449}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AE.ImageGallery.Infrastructure", "src\AE.ImageGallery.Infrastructure\AE.ImageGallery.Infrastructure.csproj", "{D3ED3380-2674-4156-B3EE-818F688705ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AE.ImageGallery.PublicApi.Contracts", "src\AE.ImageGallery.PublicApi.Contracts\AE.ImageGallery.PublicApi.Contracts.csproj", "{55682E14-C025-4A6F-9D1B-05CBCDF175D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AE.ImageGallery.PublicApi", "src\AE.ImageGallery.PublicApi\AE.ImageGallery.PublicApi.csproj", "{37822736-F35D-4580-A9F0-3F3DCF8C27F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AE.ImageGallery.Supplier", "src\AE.ImageGallery.Supplier\AE.ImageGallery.Supplier.csproj", "{9435F0F5-BAAF-4D4E-814B-3215C380B884}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AE.ImageGallery.Supplier.Runner", "src\AE.ImageGallery.Supplier.Runner\AE.ImageGallery.Supplier.Runner.csproj", "{956CF0E0-3757-44BE-BC3E-085FFF3FAA4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{56E61C46-ED0D-4464-A5C9-FB7A35D2EF97} = {5CD755CE-C6AD-4719-BD0B-057C1B4876AF}
+		{E3FD4C52-6C6B-45D0-B898-5CE06B28F4A3} = {5CD755CE-C6AD-4719-BD0B-057C1B4876AF}
+		{61BF3AEB-D917-4020-95F9-C7A35A4ADF26} = {56E61C46-ED0D-4464-A5C9-FB7A35D2EF97}
+		{624A6F2C-158E-419A-9DC0-4672BE5FC449} = {56E61C46-ED0D-4464-A5C9-FB7A35D2EF97}
+		{D3ED3380-2674-4156-B3EE-818F688705ED} = {56E61C46-ED0D-4464-A5C9-FB7A35D2EF97}
+		{55682E14-C025-4A6F-9D1B-05CBCDF175D4} = {56E61C46-ED0D-4464-A5C9-FB7A35D2EF97}
+		{37822736-F35D-4580-A9F0-3F3DCF8C27F0} = {56E61C46-ED0D-4464-A5C9-FB7A35D2EF97}
+		{9435F0F5-BAAF-4D4E-814B-3215C380B884} = {E3FD4C52-6C6B-45D0-B898-5CE06B28F4A3}
+		{956CF0E0-3757-44BE-BC3E-085FFF3FAA4A} = {E3FD4C52-6C6B-45D0-B898-5CE06B28F4A3}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61BF3AEB-D917-4020-95F9-C7A35A4ADF26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61BF3AEB-D917-4020-95F9-C7A35A4ADF26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61BF3AEB-D917-4020-95F9-C7A35A4ADF26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61BF3AEB-D917-4020-95F9-C7A35A4ADF26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{624A6F2C-158E-419A-9DC0-4672BE5FC449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{624A6F2C-158E-419A-9DC0-4672BE5FC449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{624A6F2C-158E-419A-9DC0-4672BE5FC449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{624A6F2C-158E-419A-9DC0-4672BE5FC449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3ED3380-2674-4156-B3EE-818F688705ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3ED3380-2674-4156-B3EE-818F688705ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3ED3380-2674-4156-B3EE-818F688705ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3ED3380-2674-4156-B3EE-818F688705ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55682E14-C025-4A6F-9D1B-05CBCDF175D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55682E14-C025-4A6F-9D1B-05CBCDF175D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55682E14-C025-4A6F-9D1B-05CBCDF175D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55682E14-C025-4A6F-9D1B-05CBCDF175D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37822736-F35D-4580-A9F0-3F3DCF8C27F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37822736-F35D-4580-A9F0-3F3DCF8C27F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37822736-F35D-4580-A9F0-3F3DCF8C27F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37822736-F35D-4580-A9F0-3F3DCF8C27F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9435F0F5-BAAF-4D4E-814B-3215C380B884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9435F0F5-BAAF-4D4E-814B-3215C380B884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9435F0F5-BAAF-4D4E-814B-3215C380B884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9435F0F5-BAAF-4D4E-814B-3215C380B884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{956CF0E0-3757-44BE-BC3E-085FFF3FAA4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{956CF0E0-3757-44BE-BC3E-085FFF3FAA4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{956CF0E0-3757-44BE-BC3E-085FFF3FAA4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{956CF0E0-3757-44BE-BC3E-085FFF3FAA4A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
