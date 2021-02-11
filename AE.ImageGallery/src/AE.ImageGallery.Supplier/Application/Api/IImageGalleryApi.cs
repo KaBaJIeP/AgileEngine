@@ -6,19 +6,16 @@ namespace AE.ImageGallery.Supplier.Application.Api
 {
     public interface IImageGalleryApi
     {
-        [Header("Authorization")]
-        string AuthorizationHeader { get; set; }
-
         [Post("auth")]
         Task<AuthResponseDto> Auth([Body] AuthRequestDto request);
 
         [Get("images")]
-        Task<PicturePageResponseDto> GetImages();
+        Task<PicturePageResponseDto> GetImages([Header("Authorization")] string auth);
 
         [Get("images/{page}")]
-        Task<PicturePageResponseDto> GetImages([Path] int page);
+        Task<PicturePageResponseDto> GetImages([Header("Authorization")] string auth, [Path] int page);
 
         [Get("images/{id}")]
-        Task<PictureResponseDto> GetImage([Path] string id);
+        Task<PictureResponseDto> GetImage([Header("Authorization")] string auth, [Path] string id);
     }
 }

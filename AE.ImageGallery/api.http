@@ -8,15 +8,16 @@ content-type: application/json
 
 ###
 GET http://interview.agileengine.com/images
+Authorization: Bearer 6d68db739ebc36131154d51fb472ed4a25da195a
 content-type: application/json
 
 
 ###
 GET http://interview.agileengine.com/images?page=-1
-Authorization: Bearer 9a7da82d2d5346adcebcb2cfb01f2c8757a09c5d
+Authorization: Bearer 6d68db739ebc36131154d51fb472ed4a25da195a
 content-type: application/json
 
 ###
-GET http://interview.agileengine.com/images/6f8dc3d33a8bb44d4fc31
-Authorization: Bearer 9a7da82d2d5346adcebcb2cfb01f2c8757c09c5d
+GET http://interview.agileengine.com/images/90322bc9cd20fd0f4ffa
+Authorization: Bearer 6d68db739ebc36131154d51fb472ed4a25da195a
 content-type: application/json

@@ -4,8 +4,10 @@ using System.Threading.Tasks;
 using AE.ImageGallery.Supplier.Application;
 using AE.ImageGallery.Supplier.Application.Api;
 using AE.ImageGallery.Supplier.Application.Contracts;
+using AE.ImageGallery.Supplier.Configs;
 using FakeItEasy;
 using FizzWare.NBuilder;
+using Microsoft.Extensions.Options;
 using NUnit.Framework;
 
 namespace AE.ImageGallery.Supplier.UnitTests
@@ -19,8 +21,9 @@ namespace AE.ImageGallery.Supplier.UnitTests
         [SetUp]
         public void SetUp()
         {
+            var config = A.Fake<IOptions<AgileEngineConfig>>();
             _api = A.Fake<IImageGalleryApi>();
-            _client = new ImageGalleryClient(_api);
+            _client = new ImageGalleryClient(_api, config);
         }
 
         [Test]
@@ -91,7 +94,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
                 .With(x => x.Pictures = pictureDtoList)
                 .With(x => x.HasMore = true)
                 .Build();
-            A.CallTo(() => _api.GetImages()).Returns(expectedResponse);
+            A.CallTo(() => _api.GetImages(A<string>.Ignored)).Returns(expectedResponse);
 
             // act
             var response = await _client.GetImages();
@@ -110,7 +113,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             var expectedResponse = Builder<PicturePageResponseDto>.CreateNew()
                 .With(x => x.Status = "Unauthorized")
                 .Build();
-            A.CallTo(() => _api.GetImages()).Returns(expectedResponse);
+            A.CallTo(() => _api.GetImages(A<string>.Ignored)).Returns(expectedResponse);
 
             // act
             var response = await _client.GetImages();
@@ -129,7 +132,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
                 .With(x => x.Pictures = new List<PictureDto>())
                 .With(x => x.HasMore = false)
                 .Build();
-            A.CallTo(() => _api.GetImages()).Returns(expectedResponse);
+            A.CallTo(() => _api.GetImages(A<string>.Ignored)).Returns(expectedResponse);
 
             // act
             var response = await _client.GetImages();
@@ -153,7 +156,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
                 .With(x => x.Pictures = pictureDtoList)
                 .With(x => x.HasMore = true)
                 .Build();
-            A.CallTo(() => _api.GetImages(pageNumber)).Returns(expectedResponse);
+            A.CallTo(() => _api.GetImages(A<string>.Ignored, pageNumber)).Returns(expectedResponse);
 
             // act
             var response = await _client.GetImages(pageNumber);
@@ -177,7 +180,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
                 .With(x => x.Pictures = pictureDtoList)
                 .With(x => x.HasMore = false)
                 .Build();
-            A.CallTo(() => _api.GetImages(lastPage)).Returns(expectedResponse);
+            A.CallTo(() => _api.GetImages(A<string>.Ignored, lastPage)).Returns(expectedResponse);
 
             // act
             var response = await _client.GetImages(lastPage);
@@ -200,7 +203,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
                 .With(x => x.Pictures = new List<PictureDto>())
                 .With(x => x.HasMore = false)
                 .Build();
-            A.CallTo(() => _api.GetImages(lastPage)).Returns(expectedResponse);
+            A.CallTo(() => _api.GetImages(A<string>.Ignored, lastPage)).Returns(expectedResponse);
 
             // act
             var response = await _client.GetImages(lastPage);
@@ -224,7 +227,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
                 .With(x => x.Pictures = pictureDtoList)
                 .With(x => x.HasMore = true)
                 .Build();
-            A.CallTo(() => _api.GetImages(lastPage)).Returns(expectedResponse);
+            A.CallTo(() => _api.GetImages(A<string>.Ignored, lastPage)).Returns(expectedResponse);
 
             // act
             var response = await _client.GetImages(lastPage);
@@ -244,7 +247,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             var expectedResponse = Builder<PictureResponseDto>.CreateNew()
                 .With(x => x.Status = string.Empty)
                 .Build();
-            A.CallTo(() => _api.GetImage(A<string>.Ignored)).Returns(expectedResponse);
+            A.CallTo(() => _api.GetImage(A<string>.Ignored, A<string>.Ignored)).Returns(expectedResponse);
 
             // act
             var response = await _client.GetImage(validImageId);
@@ -267,7 +270,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             var expectedResponse = Builder<PictureResponseDto>.CreateNew()
                 .With(x => x.Status = "Not found")
                 .Build();
-            A.CallTo(() => _api.GetImage(A<string>.Ignored)).Returns(expectedResponse);
+            A.CallTo(() => _api.GetImage(A<string>.Ignored, A<string>.Ignored)).Returns(expectedResponse);
 
             // act
             var response = await _client.GetImage(invalidImageId);

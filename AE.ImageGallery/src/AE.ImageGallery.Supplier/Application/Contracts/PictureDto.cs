@@ -7,7 +7,7 @@ namespace AE.ImageGallery.Supplier.Application.Contracts
         [JsonProperty("id")]
         public string Id { get; set; }
 
-        [JsonProperty("id")]
+        [JsonProperty("cropped_picture")]
         public string CroppedPicture { get; set; }
     }
 }

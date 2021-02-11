@@ -1,6 +1,6 @@
 using AE.ImageGallery.Supplier.Application;
 using AE.ImageGallery.Supplier.Application.Api;
-using AE.ImageGallery.Supplier.Runner.Configs;
+using AE.ImageGallery.Supplier.Configs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RestEase.HttpClientFactory;
@@ -15,7 +15,6 @@ namespace AE.ImageGallery.Supplier.Runner
             collection.Configure<AgileEngineConfig>(configuration.GetSection(AgileEngineConfig.SectionName));
             var config = configuration.GetSection(AgileEngineConfig.SectionName).Get<AgileEngineConfig>();
             collection.AddRestEaseClient<IImageGalleryApi>(config.ApiUrl);
-
             collection.AddSingleton<IImageGalleryClient, ImageGalleryClient>();
             return collection;
         }

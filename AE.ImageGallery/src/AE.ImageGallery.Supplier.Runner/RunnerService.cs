@@ -2,26 +2,35 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using AE.ImageGallery.Supplier.Application.Api;
-using AE.ImageGallery.Supplier.Runner.Configs;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 
 namespace AE.ImageGallery.Supplier.Runner
 {
     public class RunnerService: IHostedService
     {
         private readonly IImageGalleryClient _client;
-        private readonly IOptions<AgileEngineConfig> _config;
+        private readonly ILogger<RunnerService> _logger;
 
-        public RunnerService(IImageGalleryClient client, IOptions<AgileEngineConfig> config)
+        public RunnerService(
+            IImageGalleryClient client,
+            ILogger<RunnerService> logger)
         {
             _client = client;
-            _config = config;
+            _logger = logger;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            var authResponse = await _client.Auth(_config.Value.ApiKey);
+            try
+            {
+                var images = await _client.GetImages();
+                _logger.LogInformation($"{images.PageCount}");
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, e.Message);
+            }
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
