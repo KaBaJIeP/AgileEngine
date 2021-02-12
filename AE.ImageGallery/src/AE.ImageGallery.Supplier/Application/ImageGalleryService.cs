@@ -40,7 +40,25 @@ namespace AE.ImageGallery.Supplier.Application
             };
         }
 
-        public List<SearchTerm> MapToTerms(PictureResponseDto picture)
+        public List<SearchTerm> GetSearchTerms(ImagesOnPage imagesOnPage)
+        {
+            var imageSearchTerms = imagesOnPage.Pictures.Select(this.MapToTerms)
+                .SelectMany(x => x)
+                .ToList();
+            var result = this.ReduceTerms(imageSearchTerms);
+
+            return result;
+        }
+
+        public List<SearchTerm> CombineSearchTerms(params List<SearchTerm>[] listOfSearchTerms)
+        {
+            var all = listOfSearchTerms.SelectMany(x => x).ToList();
+            var result = this.ReduceTerms(all);
+
+            return result;
+        }
+
+        private List<SearchTerm> MapToTerms(PictureResponseDto picture)
         {
             var authorTerms = GetTerms(picture.Author, picture.Id);
             var cameraTerms = GetTerms(picture.Camera, picture.Id);
@@ -54,7 +72,7 @@ namespace AE.ImageGallery.Supplier.Application
             return result.Distinct(_comparer).ToList();
         }
 
-        public List<SearchTerm> ReduceToTerms(List<SearchTerm> searchTerms)
+        private List<SearchTerm> ReduceTerms(List<SearchTerm> searchTerms)
         {
             var map = searchTerms.GroupBy(x => x.Term)
                 .ToDictionary(x => x.Key,

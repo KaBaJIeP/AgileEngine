@@ -10,14 +10,14 @@ namespace AE.ImageGallery.Supplier.Runner
 {
     public class RunnerService: IHostedService
     {
-        private readonly IImageGalleryService _service;
+        private readonly ISearchTermProvider _searchTermProvider;
         private readonly ILogger<RunnerService> _logger;
 
         public RunnerService(
-            IImageGalleryService service,
+            ISearchTermProvider searchTermProvider,
             ILogger<RunnerService> logger)
         {
-            _service = service;
+            _searchTermProvider = searchTermProvider;
             _logger = logger;
         }
 
@@ -25,21 +25,12 @@ namespace AE.ImageGallery.Supplier.Runner
         {
             try
             {
-                var pageCount = 0;
-                var currentPage = 1;
-                do
+                var terms = await _searchTermProvider.GetSearchTerms();
+                _logger.LogInformation($"{string.Join(",",terms.Select(x => x.Term))}");
+                foreach (var term in terms)
                 {
-                    var imagesOnPage = await _service.GetImagesOnPage(currentPage);
-                    pageCount = imagesOnPage.PageCount;
-                    currentPage++;
-                    // save imagesOnPage.Pictures to db
-                    var imageSearchTerms = imagesOnPage.Pictures.Select(_service.MapToTerms)
-                        .SelectMany(x => x)
-                        .ToList();
-                    imageSearchTerms = _service.ReduceToTerms(imageSearchTerms);
-                    // merge imageTerms in cache
-
-                } while (currentPage <= pageCount);
+                    _logger.LogInformation($"{term.Term} : {string.Join(",",term.PictureIds)}");
+                }
             }
             catch (AggregateException aex)
             {

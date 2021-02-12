@@ -14,11 +14,15 @@ namespace AE.ImageGallery.Supplier.Runner
         {
             collection.AddHttpClient();
             collection.Configure<AgileEngineConfig>(configuration.GetSection(AgileEngineConfig.SectionName));
+
             var config = configuration.GetSection(AgileEngineConfig.SectionName).Get<AgileEngineConfig>();
             collection.AddRestEaseClient<IImageGalleryApi>(config.ApiUrl);
+
             collection.AddSingleton<IImageGalleryClient, ImageGalleryClient>();
             collection.AddSingleton<IImageGalleryService, ImageGalleryService>();
             collection.AddSingleton<IEqualityComparer<SearchTerm>, SearchTermComparer>();
+            collection.AddSingleton<ISearchTermProvider, SearchTermProvider>();
+
             return collection;
         }
     }
