@@ -34,7 +34,9 @@ namespace AE.ImageGallery.Supplier.Application
             return new ImagesOnPage
             {
                 Pictures = pictures,
-                PageCount = page.PageCount
+                TotalPagesCount = page.PageCount,
+                CurrentPage = pageNumber,
+                HasMore = page.HasMore
             };
         }
     }

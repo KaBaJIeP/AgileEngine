@@ -14,20 +14,18 @@ namespace AE.ImageGallery.Supplier.Application
             _comparer = comparer;
         }
 
-        public List<SearchTerm> CombineSearchTerms(params List<SearchTerm>[] listOfSearchTerms)
+        public SearchTermsOnPage GetSearchTermsOnPage(ImagesOnPage imagesOnPage)
         {
-            var all = listOfSearchTerms.SelectMany(x => x).ToList();
-            var result = this.ReduceTerms(all);
-
-            return result;
-        }
-
-        public List<SearchTerm> GetSearchTerms(ImagesOnPage imagesOnPage)
-        {
-            var imageSearchTerms = imagesOnPage.Pictures.Select(this.MapToTerms)
+            var imagesSearchTerms = imagesOnPage.Pictures.Select(this.MapToTerms)
                 .SelectMany(x => x)
                 .ToList();
-            var result = this.ReduceTerms(imageSearchTerms);
+            var searchTerms = this.ReduceTerms(imagesSearchTerms);
+
+            var result = new SearchTermsOnPage
+            {
+                SearchTerms = searchTerms,
+                ImagesOnPage = imagesOnPage
+            };
 
             return result;
         }
