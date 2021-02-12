@@ -6,7 +6,7 @@ namespace AE.ImageGallery.Supplier.Application
 {
     public class SearchTerm
     {
-        public List<string> PictureIds { get; set; }
+        public List<string> ImageIds { get; set; }
         public string Term { get; set; }
     }
 
@@ -18,14 +18,14 @@ namespace AE.ImageGallery.Supplier.Application
             if (ReferenceEquals(x, null)) return false;
             if (ReferenceEquals(y, null)) return false;
             if (x.GetType() != y.GetType()) return false;
-            return x.PictureIds.Count == y.PictureIds.Count
-                   && x.PictureIds.All(id => y.PictureIds.Contains(id))
+            return x.ImageIds.Count == y.ImageIds.Count
+                   && x.ImageIds.All(id => y.ImageIds.Contains(id))
                    && String.Equals(x.Term, y.Term, StringComparison.InvariantCultureIgnoreCase);
         }
 
         public int GetHashCode(SearchTerm obj)
         {
-            return HashCode.Combine(obj.PictureIds, obj.Term);
+            return HashCode.Combine(obj.ImageIds, obj.Term);
         }
     }
 }

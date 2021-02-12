@@ -11,15 +11,18 @@ namespace AE.ImageGallery.Supplier.Runner
     {
         private readonly ISearchTermProvider _searchTermProvider;
         private readonly IImageRepository _imageRepository;
+        private readonly ISearchTermsRepository _searchTermsRepository;
         private readonly ILogger<RunnerService> _logger;
 
         public RunnerService(
             ISearchTermProvider searchTermProvider,
             IImageRepository imageRepository,
+            ISearchTermsRepository searchTermsRepository,
             ILogger<RunnerService> logger)
         {
             _searchTermProvider = searchTermProvider;
             _imageRepository = imageRepository;
+            _searchTermsRepository = searchTermsRepository;
             _logger = logger;
         }
 
@@ -38,7 +41,8 @@ namespace AE.ImageGallery.Supplier.Runner
                     currentPage++;
 
                     await _imageRepository.Save(result.ImagesOnPage);
-                    // save termsPerPage to cache
+                    await _searchTermsRepository.Save(result.SearchTerms);
+
                 } while (hasMoreImages);
             }
             catch (AggregateException aex)

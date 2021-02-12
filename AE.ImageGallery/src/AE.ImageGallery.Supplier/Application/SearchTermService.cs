@@ -48,12 +48,12 @@ namespace AE.ImageGallery.Supplier.Application
         {
             var map = searchTerms.GroupBy(x => x.Term)
                 .ToDictionary(x => x.Key,
-                    y => y.Select(z => z.PictureIds)
+                    y => y.Select(z => z.ImageIds)
                         .SelectMany(ids => ids).Distinct().ToList());
             var result = map.Select(x => new SearchTerm()
             {
                 Term = x.Key,
-                PictureIds = x.Value
+                ImageIds = x.Value
             }).ToList();
 
             return result;
@@ -66,7 +66,7 @@ namespace AE.ImageGallery.Supplier.Application
             {
                 return value.Split(separator).Select(x => new SearchTerm()
                 {
-                    PictureIds = new List<string> { id },
+                    ImageIds = new List<string> { id },
                     Term = x
                 }).ToList();
             }

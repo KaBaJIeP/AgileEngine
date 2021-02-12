@@ -25,12 +25,18 @@ namespace AE.ImageGallery.Supplier.Runner
             var config = configuration.GetSection(AgileEngineConfig.SectionName).Get<AgileEngineConfig>();
             collection.AddRestEaseClient<IImageGalleryApi>(config.ApiUrl);
 
+            collection.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = config.RedisConnectionString;
+            });
+
             collection.AddSingleton<IImageGalleryApiClient, ImageGalleryApiClient>();
             collection.AddSingleton<IImageGalleryService, ImageGalleryService>();
             collection.AddSingleton<IEqualityComparer<SearchTerm>, SearchTermComparer>();
             collection.AddSingleton<ISearchTermProvider, SearchTermProvider>();
             collection.AddSingleton<ISearchTermService, SearchTermService>();
             collection.AddSingleton<IImageRepository, ImageRepository>();
+            collection.AddSingleton<ISearchTermsRepository, SearchTermsRepository>();
 
             return collection;
         }
