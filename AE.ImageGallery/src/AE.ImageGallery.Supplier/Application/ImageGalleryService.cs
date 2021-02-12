@@ -8,16 +8,16 @@ namespace AE.ImageGallery.Supplier.Application
 {
     public class ImageGalleryService : IImageGalleryService
     {
-        private readonly IImageGalleryClient _client;
+        private readonly IImageGalleryApiClient _apiClient;
 
-        public ImageGalleryService(IImageGalleryClient client)
+        public ImageGalleryService(IImageGalleryApiClient apiClient)
         {
-            _client = client;
+            _apiClient = apiClient;
         }
 
         public async Task<ImagesOnPage> GetImagesOnPage(int pageNumber)
         {
-            var page = await _client.GetImages(pageNumber);
+            var page = await _apiClient.GetImages(pageNumber);
             var imageIds = page.Pictures.Select(x => x.Id)
                 .Where(x => !string.IsNullOrEmpty(x))
                 .Distinct()
@@ -26,7 +26,7 @@ namespace AE.ImageGallery.Supplier.Application
 
             foreach (var imageId in imageIds)
             {
-                var getImageTask = _client.GetImage(imageId);
+                var getImageTask = _apiClient.GetImage(imageId);
                 getImageTasks.Add(getImageTask);
             }
             var pictures = (await Task.WhenAll(getImageTasks)).ToList();

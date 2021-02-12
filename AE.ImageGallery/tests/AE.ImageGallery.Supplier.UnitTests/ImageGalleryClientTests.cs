@@ -15,7 +15,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
     [TestFixture]
     public class ImageGalleryClientTests
     {
-        private IImageGalleryClient _client;
+        private IImageGalleryApiClient _apiClient;
         private IImageGalleryApi _api;
 
         [SetUp]
@@ -23,7 +23,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
         {
             var config = A.Fake<IOptions<AgileEngineConfig>>();
             _api = A.Fake<IImageGalleryApi>();
-            _client = new ImageGalleryClient(_api, config);
+            _apiClient = new ImageGalleryApiClient(_api, config);
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             A.CallTo(() => _api.Auth(A<AuthRequestDto>.Ignored)).Returns(expectedResponse);
 
             // act
-            var response = await _client.Auth(validApiKey);
+            var response = await _apiClient.Auth(validApiKey);
 
             // assert
             Assert.AreEqual(expectedResponse.Auth, response.Auth);
@@ -58,7 +58,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             A.CallTo(() => _api.Auth(A<AuthRequestDto>.Ignored)).Returns(expectedResponse);
 
             // act
-            var response = await _client.Auth(invalidApiKey);
+            var response = await _apiClient.Auth(invalidApiKey);
 
             // assert
             Assert.AreEqual(expectedResponse.Auth, response.Auth);
@@ -76,7 +76,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
                 .Build();
 
             // act
-            var response = await _client.Auth(invalidApiKey);
+            var response = await _apiClient.Auth(invalidApiKey);
 
             // assert
             Assert.AreEqual(expectedResponse.Auth, response.Auth);
@@ -97,7 +97,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             A.CallTo(() => _api.GetImages(A<string>.Ignored)).Returns(expectedResponse);
 
             // act
-            var response = await _client.GetImages();
+            var response = await _apiClient.GetImages();
 
             // assert
             Assert.AreEqual(expectedResponse.Page, response.Page);
@@ -116,7 +116,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             A.CallTo(() => _api.GetImages(A<string>.Ignored)).Returns(expectedResponse);
 
             // act
-            var response = await _client.GetImages();
+            var response = await _apiClient.GetImages();
 
             // assert
             Assert.AreEqual(expectedResponse.Status, response.Status);
@@ -135,7 +135,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             A.CallTo(() => _api.GetImages(A<string>.Ignored)).Returns(expectedResponse);
 
             // act
-            var response = await _client.GetImages();
+            var response = await _apiClient.GetImages();
 
             // assert
             Assert.AreEqual(expectedResponse.Page, response.Page);
@@ -159,7 +159,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             A.CallTo(() => _api.GetImages(A<string>.Ignored, pageNumber)).Returns(expectedResponse);
 
             // act
-            var response = await _client.GetImages(pageNumber);
+            var response = await _apiClient.GetImages(pageNumber);
 
             // assert
             Assert.AreEqual(expectedResponse.Page, response.Page);
@@ -183,7 +183,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             A.CallTo(() => _api.GetImages(A<string>.Ignored, lastPage)).Returns(expectedResponse);
 
             // act
-            var response = await _client.GetImages(lastPage);
+            var response = await _apiClient.GetImages(lastPage);
 
             // assert
             Assert.AreEqual(expectedResponse.Page, response.Page);
@@ -206,7 +206,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             A.CallTo(() => _api.GetImages(A<string>.Ignored, lastPage)).Returns(expectedResponse);
 
             // act
-            var response = await _client.GetImages(lastPage);
+            var response = await _apiClient.GetImages(lastPage);
 
             // assert
             Assert.AreEqual(expectedResponse.Page, response.Page);
@@ -230,7 +230,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             A.CallTo(() => _api.GetImages(A<string>.Ignored, lastPage)).Returns(expectedResponse);
 
             // act
-            var response = await _client.GetImages(lastPage);
+            var response = await _apiClient.GetImages(lastPage);
 
             // assert
             Assert.AreEqual(expectedResponse.Page, response.Page);
@@ -250,7 +250,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             A.CallTo(() => _api.GetImage(A<string>.Ignored, A<string>.Ignored)).Returns(expectedResponse);
 
             // act
-            var response = await _client.GetImage(validImageId);
+            var response = await _apiClient.GetImage(validImageId);
 
             // assert
             Assert.AreEqual(expectedResponse.Id, response.Id);
@@ -273,7 +273,7 @@ namespace AE.ImageGallery.Supplier.UnitTests
             A.CallTo(() => _api.GetImage(A<string>.Ignored, A<string>.Ignored)).Returns(expectedResponse);
 
             // act
-            var response = await _client.GetImage(invalidImageId);
+            var response = await _apiClient.GetImage(invalidImageId);
 
             // assert
             Assert.AreEqual(expectedResponse.Status, response.Status);

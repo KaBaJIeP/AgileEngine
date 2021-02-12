@@ -11,14 +11,14 @@ using RestEase;
 
 namespace AE.ImageGallery.Supplier.Application
 {
-    public class ImageGalleryClient : IImageGalleryClient
+    public class ImageGalleryApiClient : IImageGalleryApiClient
     {
         private readonly IImageGalleryApi _imageGalleryApi;
         private readonly IOptions<AgileEngineConfig> _config;
         private readonly AsyncRetryPolicy _unauthorizedPolicy;
         private string _token;
 
-        public ImageGalleryClient(IImageGalleryApi imageGalleryApi, IOptions<AgileEngineConfig> config)
+        public ImageGalleryApiClient(IImageGalleryApi imageGalleryApi, IOptions<AgileEngineConfig> config)
         {
             _imageGalleryApi = imageGalleryApi;
             _config = config;

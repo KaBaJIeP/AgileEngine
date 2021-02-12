@@ -3,7 +3,7 @@ using AE.ImageGallery.Supplier.Application.Contracts;
 
 namespace AE.ImageGallery.Supplier.Application.Api
 {
-    public interface IImageGalleryClient
+    public interface IImageGalleryApiClient
     {
         Task<AuthResponseDto> Auth(string apiKey);
         Task<PicturePageResponseDto> GetImages();

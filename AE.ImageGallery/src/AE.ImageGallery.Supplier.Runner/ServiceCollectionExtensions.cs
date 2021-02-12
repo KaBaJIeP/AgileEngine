@@ -18,7 +18,7 @@ namespace AE.ImageGallery.Supplier.Runner
             var config = configuration.GetSection(AgileEngineConfig.SectionName).Get<AgileEngineConfig>();
             collection.AddRestEaseClient<IImageGalleryApi>(config.ApiUrl);
 
-            collection.AddSingleton<IImageGalleryClient, ImageGalleryClient>();
+            collection.AddSingleton<IImageGalleryApiClient, ImageGalleryApiClient>();
             collection.AddSingleton<IImageGalleryService, ImageGalleryService>();
             collection.AddSingleton<IEqualityComparer<SearchTerm>, SearchTermComparer>();
             collection.AddSingleton<ISearchTermProvider, SearchTermProvider>();
