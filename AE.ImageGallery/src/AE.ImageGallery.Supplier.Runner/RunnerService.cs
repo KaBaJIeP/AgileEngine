@@ -26,6 +26,11 @@ namespace AE.ImageGallery.Supplier.Runner
             try
             {
                 var terms = await _searchTermProvider.GetSearchTerms();
+
+                // imagesPerPage termsPerPage
+                // save imagesPerPage to db
+                // save termsPerPage to cache
+
                 _logger.LogInformation($"{string.Join(",",terms.Select(x => x.Term))}");
                 foreach (var term in terms)
                 {

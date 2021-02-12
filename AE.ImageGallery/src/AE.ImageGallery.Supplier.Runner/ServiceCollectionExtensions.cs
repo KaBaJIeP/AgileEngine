@@ -22,6 +22,7 @@ namespace AE.ImageGallery.Supplier.Runner
             collection.AddSingleton<IImageGalleryService, ImageGalleryService>();
             collection.AddSingleton<IEqualityComparer<SearchTerm>, SearchTermComparer>();
             collection.AddSingleton<ISearchTermProvider, SearchTermProvider>();
+            collection.AddSingleton<ISearchTermService, SearchTermService>();
 
             return collection;
         }
