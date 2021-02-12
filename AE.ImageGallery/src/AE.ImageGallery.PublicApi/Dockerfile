@@ -1,8 +1,8 @@
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim as base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 as base
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim as restore
+FROM mcr.microsoft.com/dotnet/sdk:5.0 as restore
 WORKDIR /app
 
 COPY ./NuGet.config ./
