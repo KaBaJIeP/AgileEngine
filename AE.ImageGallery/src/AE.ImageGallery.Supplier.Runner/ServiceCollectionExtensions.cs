@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AE.ImageGallery.Supplier.Application;
 using AE.ImageGallery.Supplier.Application.Api;
 using AE.ImageGallery.Supplier.Configs;
@@ -17,6 +18,7 @@ namespace AE.ImageGallery.Supplier.Runner
             collection.AddRestEaseClient<IImageGalleryApi>(config.ApiUrl);
             collection.AddSingleton<IImageGalleryClient, ImageGalleryClient>();
             collection.AddSingleton<IImageGalleryService, ImageGalleryService>();
+            collection.AddSingleton<IEqualityComparer<SearchTerm>, SearchTermComparer>();
             return collection;
         }
     }

@@ -1,7 +1,7 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AE.ImageGallery.Supplier.Application;
 using AE.ImageGallery.Supplier.Application.Api;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -32,6 +32,13 @@ namespace AE.ImageGallery.Supplier.Runner
                     var imagesOnPage = await _service.GetImagesOnPage(currentPage);
                     pageCount = imagesOnPage.PageCount;
                     currentPage++;
+                    // save imagesOnPage.Pictures to db
+                    var imageSearchTerms = imagesOnPage.Pictures.Select(_service.MapToTerms)
+                        .SelectMany(x => x)
+                        .ToList();
+                    imageSearchTerms = _service.ReduceToTerms(imageSearchTerms);
+                    // merge imageTerms in cache
+
                 } while (currentPage <= pageCount);
             }
             catch (AggregateException aex)
