@@ -5,6 +5,6 @@ namespace AE.ImageGallery.Supplier.Application
 {
     public class ImagesOnPage : Page
     {
-        public List<PictureResponseDto> Pictures { get; set; }
+        public List<PictureResponseDto> Images { get; set; }
     }
 }

@@ -33,7 +33,7 @@ namespace AE.ImageGallery.Supplier.Application
 
             return new ImagesOnPage
             {
-                Pictures = pictures,
+                Images = pictures,
                 TotalPagesCount = page.PageCount,
                 CurrentPage = pageNumber,
                 HasMore = page.HasMore

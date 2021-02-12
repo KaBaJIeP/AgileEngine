@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using AE.ImageGallery.Supplier.Application;
 using AE.ImageGallery.Supplier.Application.Api;
 using AE.ImageGallery.Supplier.Configs;
+using AE.ImageGallery.Supplier.Infrastructure;
+using AE.ImageGallery.Supplier.Infrastructure.Mapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RestEase.HttpClientFactory;
@@ -12,6 +14,11 @@ namespace AE.ImageGallery.Supplier.Runner
     {
         public static IServiceCollection ConfigureRunner(this IServiceCollection collection, IConfiguration configuration)
         {
+            collection.AddAutoMapper((cfg =>
+            {
+                cfg.AddProfile(new MongoDbProfile());
+            }));
+
             collection.AddHttpClient();
             collection.Configure<AgileEngineConfig>(configuration.GetSection(AgileEngineConfig.SectionName));
 
@@ -23,6 +30,7 @@ namespace AE.ImageGallery.Supplier.Runner
             collection.AddSingleton<IEqualityComparer<SearchTerm>, SearchTermComparer>();
             collection.AddSingleton<ISearchTermProvider, SearchTermProvider>();
             collection.AddSingleton<ISearchTermService, SearchTermService>();
+            collection.AddSingleton<IImageRepository, ImageRepository>();
 
             return collection;
         }

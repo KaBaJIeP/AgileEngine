@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AE.ImageGallery.Supplier.Application.Api;
@@ -11,13 +10,16 @@ namespace AE.ImageGallery.Supplier.Runner
     public class RunnerService: IHostedService
     {
         private readonly ISearchTermProvider _searchTermProvider;
+        private readonly IImageRepository _imageRepository;
         private readonly ILogger<RunnerService> _logger;
 
         public RunnerService(
             ISearchTermProvider searchTermProvider,
+            IImageRepository imageRepository,
             ILogger<RunnerService> logger)
         {
             _searchTermProvider = searchTermProvider;
+            _imageRepository = imageRepository;
             _logger = logger;
         }
 
@@ -25,6 +27,8 @@ namespace AE.ImageGallery.Supplier.Runner
         {
             try
             {
+                await _imageRepository.DeleteAllImages();
+
                 var currentPage = 1;
                 var hasMoreImages = false;
                 do
@@ -32,7 +36,8 @@ namespace AE.ImageGallery.Supplier.Runner
                     var result = await _searchTermProvider.GetSearchTermsOnPage(currentPage);
                     hasMoreImages = result.ImagesOnPage.HasMore;
                     currentPage++;
-                    // save imagesPerPage to db
+
+                    await _imageRepository.Save(result.ImagesOnPage);
                     // save termsPerPage to cache
                 } while (hasMoreImages);
             }

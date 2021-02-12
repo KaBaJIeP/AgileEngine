@@ -16,7 +16,7 @@ namespace AE.ImageGallery.Supplier.Application
 
         public SearchTermsOnPage GetSearchTermsOnPage(ImagesOnPage imagesOnPage)
         {
-            var imagesSearchTerms = imagesOnPage.Pictures.Select(this.MapToTerms)
+            var imagesSearchTerms = imagesOnPage.Images.Select(this.MapToTerms)
                 .SelectMany(x => x)
                 .ToList();
             var searchTerms = this.ReduceTerms(imagesSearchTerms);
