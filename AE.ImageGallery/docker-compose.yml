@@ -22,3 +22,11 @@ services:
     image: redis:6.0.10-alpine
     ports:
       - 6379:6379
+
+  public-api:
+    image: image-gallery/public-api
+    build:
+      context: .
+      dockerfile: src/AE.ImageGallery.PublicApi/Dockerfile
+    ports:
+      - 5000:5000

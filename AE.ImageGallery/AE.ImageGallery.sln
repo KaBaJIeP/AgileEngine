@@ -10,6 +10,7 @@ ProjectSection(SolutionItems) = preProject
 	api.http = api.http
 	.gitignore = .gitignore
 	docker-compose.yml = docker-compose.yml
+	NuGet.config = NuGet.config
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "read", "read", "{56E61C46-ED0D-4464-A5C9-FB7A35D2EF97}"
