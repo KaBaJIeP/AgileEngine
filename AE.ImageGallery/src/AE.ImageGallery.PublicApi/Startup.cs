@@ -1,3 +1,9 @@
+using System.Reflection;
+using AE.ImageGallery.Application.Api;
+using AE.ImageGallery.Application.Controllers;
+using AE.ImageGallery.Infrastructure;
+using AE.ImageGallery.Supplier.Configs;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +22,6 @@ namespace AE.ImageGallery.PublicApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -24,9 +29,10 @@ namespace AE.ImageGallery.PublicApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "AE.ImageGallery.PublicApi", Version = "v1"});
             });
+
+            ConfigureApplication(services);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -36,13 +42,21 @@ namespace AE.ImageGallery.PublicApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AE.ImageGallery.PublicApi v1"));
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
-
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+        }
+
+        private void ConfigureApplication(IServiceCollection services)
+        {
+            services.Configure<AgileEngineConfig>(Configuration.GetSection(AgileEngineConfig.SectionName));
+            var config = Configuration.GetSection(AgileEngineConfig.SectionName).Get<AgileEngineConfig>();
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = config.RedisConnectionString;
+            });
+
+            services.AddSingleton<ISearchTermRepository, SearchTermRepository>();
+            services.AddMediatR(typeof(SearchController));
         }
     }
 }

@@ -22,14 +22,14 @@ namespace AE.ImageGallery.Supplier.Infrastructure
         {
             foreach (var term in terms)
             {
-                var oldIds = await GetImageIds(term.Term);
+                var oldIds = await GetImageIds(term.Term.ToLowerInvariant());
                 var newIds = term.ImageIds;
 
                 var mergedIds = oldIds.Union(newIds).ToList();
 
                 var ids = string.Join(Separator, mergedIds);
                 var bytes = Encoding.ASCII.GetBytes(ids);
-                await _cache.SetAsync(term.Term, bytes);
+                await _cache.SetAsync(term.Term.ToLowerInvariant(), bytes);
             }
         }
 
