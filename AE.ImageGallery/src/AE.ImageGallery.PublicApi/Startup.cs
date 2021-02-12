@@ -1,8 +1,8 @@
-using System.Reflection;
 using AE.ImageGallery.Application.Api;
 using AE.ImageGallery.Application.Controllers;
 using AE.ImageGallery.Infrastructure;
 using AE.ImageGallery.Supplier.Configs;
+using AE.ImageGallery.Supplier.Infrastructure.Mapper;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,6 +48,11 @@ namespace AE.ImageGallery.PublicApi
 
         private void ConfigureApplication(IServiceCollection services)
         {
+            services.AddAutoMapper((cfg =>
+            {
+                cfg.AddProfile(new MongoDbProfile());
+            }));
+
             services.Configure<AgileEngineConfig>(Configuration.GetSection(AgileEngineConfig.SectionName));
             var config = Configuration.GetSection(AgileEngineConfig.SectionName).Get<AgileEngineConfig>();
             services.AddStackExchangeRedisCache(options =>
@@ -56,6 +61,7 @@ namespace AE.ImageGallery.PublicApi
             });
 
             services.AddSingleton<ISearchTermRepository, SearchTermRepository>();
+            services.AddSingleton<IImageRepository, ImageRepository>();
             services.AddMediatR(typeof(SearchController));
         }
     }
