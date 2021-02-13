@@ -60,8 +60,8 @@ namespace AE.ImageGallery.PublicApi
                 options.Configuration = config.RedisConnectionString;
             });
 
-            services.AddSingleton<ISearchTermRepository, SearchTermRepository>();
-            services.AddSingleton<IImageRepository, ImageRepository>();
+            services.AddScoped<ISearchTermRepository, SearchTermRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
             services.AddMediatR(typeof(SearchController));
         }
     }

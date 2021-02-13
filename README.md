@@ -19,7 +19,7 @@ Information
 * Terms parser works only by words => doesn't respect whitespaces as `Utilized Member`
 * Terms parser doesn't reload content by timer =>  is skipped to reduce time.
 * The process of saving images to the local storage => is skipped to reduce time. (+1 repository and url)
-* Test, test and again tests => is skipped to reduce time. 
+* Tests, tests and again tests => is skipped to reduce time. 
   * You could check tests as for example in `ImageGalleryClientTests`
 * Parser very simple, but it resolves the current load. With new incoming requirements it could be improved.
 

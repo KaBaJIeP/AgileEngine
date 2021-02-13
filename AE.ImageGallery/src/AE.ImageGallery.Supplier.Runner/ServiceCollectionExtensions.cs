@@ -30,13 +30,13 @@ namespace AE.ImageGallery.Supplier.Runner
                 options.Configuration = config.RedisConnectionString;
             });
 
-            collection.AddSingleton<IImageGalleryApiClient, ImageGalleryApiClient>();
-            collection.AddSingleton<IImageGalleryService, ImageGalleryService>();
-            collection.AddSingleton<IEqualityComparer<SearchTerm>, SearchTermComparer>();
-            collection.AddSingleton<ISearchTermProvider, SearchTermProvider>();
-            collection.AddSingleton<ISearchTermService, SearchTermService>();
-            collection.AddSingleton<IImageRepository, ImageRepository>();
-            collection.AddSingleton<ISearchTermsRepository, SearchTermsRepository>();
+            collection.AddScoped<IImageGalleryApiClient, ImageGalleryApiClient>();
+            collection.AddScoped<IImageGalleryService, ImageGalleryService>();
+            collection.AddScoped<IEqualityComparer<SearchTerm>, SearchTermComparer>();
+            collection.AddScoped<ISearchTermProvider, SearchTermProvider>();
+            collection.AddScoped<ISearchTermService, SearchTermService>();
+            collection.AddScoped<IImageRepository, ImageRepository>();
+            collection.AddScoped<ISearchTermsRepository, SearchTermsRepository>();
 
             return collection;
         }
